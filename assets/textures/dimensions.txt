@@ -1,0 +1,10 @@
+aliens - 36x36
+player - 32x32
+ship - 192x192
+explosion small - 32x32
+explosion large - 80x80
+player hit - 36x36
+player projectile - 16x64
+alien projectile - 36x64
+moon tiles - 16x16
+background - 320x240
