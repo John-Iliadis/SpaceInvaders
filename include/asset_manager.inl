@@ -2,13 +2,6 @@ template <typename asset_type>
 std::unordered_map<std::string, std::unique_ptr<asset_type>> AssetManager<asset_type>::map;
 
 template<typename asset_type>
-AssetManager<asset_type> &AssetManager<asset_type>::instance()
-{
-    static AssetManager<asset_type> asset_manager;
-    return asset_manager;
-}
-
-template<typename asset_type>
 const asset_type& AssetManager<asset_type>::get(const std::string &key)
 {
     return get_impl(key);
@@ -42,7 +35,7 @@ const asset_type& AssetManager<asset_type>::get_impl(const std::string &key)
     }
     else
     {
-        throw std::runtime_error("AssetManager::get - Asset missing from map\n");
+        throw std::runtime_error("AssetManager::get - Asset " + key +  " missing from map\n");
     }
 }
 
@@ -71,7 +64,7 @@ void AssetManager<asset_type>::load_directory_impl(const std::string &dir)
     {
         if (fs::is_directory(entry))
         {
-            load_directory(entry.path().string());
+            load_directory_impl(entry.path().string());
         }
         else if (fs::is_regular_file(entry))
         {
@@ -80,7 +73,7 @@ void AssetManager<asset_type>::load_directory_impl(const std::string &dir)
             std::string key = entry.path().stem().string();
             std::string file_path = entry.path().string();
 
-            load(key, file_path);
+            load_impl(key, file_path);
         }
     }
 }

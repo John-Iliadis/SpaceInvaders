@@ -12,6 +12,10 @@
 #include <stdexcept>
 #include <cassert>
 
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
+
 namespace fs = std::filesystem;
 
 
@@ -19,11 +23,6 @@ template <typename asset_type>
 class AssetManager
 {
 public:
-    AssetManager(AssetManager const&) = delete;
-    void operator=(AssetManager const&) = delete;
-
-    static AssetManager<asset_type>& instance();
-
     static const asset_type& get(const std::string& key);
 
     static void load(const std::string& key, const std::string& file_name);
@@ -46,13 +45,6 @@ private:
 
 #include "asset_manager.inl"
 
-
-namespace sf
-{
-    class Texture;
-    class Font;
-    class SoundBuffer;
-}
 
 typedef AssetManager<sf::Texture> Textures;
 typedef AssetManager<sf::Font> Fonts;
