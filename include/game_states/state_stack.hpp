@@ -15,17 +15,8 @@
 #include <SFML/Window/Event.hpp>
 
 #include "state.hpp"
+#include "state_identifiers.hpp"
 
-enum class StateID
-{
-    MENU,
-    SETTINGS,
-    GAME,
-    PAUSE,
-    GAME_OVER,
-    HIGH_SCORES,
-    NONE
-};
 
 class StateStack
 {

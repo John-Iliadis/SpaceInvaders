@@ -73,11 +73,14 @@ void StateStack::apply_pending_changes()
         switch (action)
         {
             case Action::PUSH:
+                if (!is_empty()) state_stack.back()->on_exit();
                 state_stack.push_back(std::move(create_state(state_id)));
                 break;
 
             case Action::POP:
+                state_stack.back()->on_exit();
                 state_stack.pop_back();
+                if (!is_empty()) state_stack.back()->on_enter();
                 break;
 
             case Action::CLEAR:

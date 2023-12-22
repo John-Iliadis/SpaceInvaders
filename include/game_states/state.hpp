@@ -5,20 +5,21 @@
 #ifndef SPACEINVADERS_STATE_HPP
 #define SPACEINVADERS_STATE_HPP
 
-namespace sf
-{
-    class Event;
-    class RenderWindow;
-}
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Event.hpp>
+
+#include "state_identifiers.hpp"
 
 class StateStack;
-enum class StateID;
 
 class State
 {
 public:
     State(StateStack& state_stack, sf::RenderWindow& window);
     virtual ~State() = default;
+
+    virtual void on_enter() {};
+    virtual void on_exit() {};
 
     virtual void render() = 0;
     virtual bool update() = 0;
