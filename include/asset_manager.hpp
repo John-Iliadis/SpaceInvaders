@@ -12,10 +12,6 @@
 #include <stdexcept>
 #include <cassert>
 
-#include <SFML/Audio/SoundBuffer.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Font.hpp>
-
 namespace fs = std::filesystem;
 
 
@@ -45,6 +41,10 @@ private:
 
 #include "asset_manager.inl"
 
+
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 typedef AssetManager<sf::Texture> Textures;
 typedef AssetManager<sf::Font> Fonts;
