@@ -9,6 +9,11 @@ Game::Game()
 {
     Textures::load_directory("../assets/textures");
     SoundBuffers::load_directory("../assets/audio");
+    Fonts::load_directory("../assets/fonts");
+
+    KeyBindings::init();
+    SoundPlayer::init();
+    MusicPlayer::init();
 
     unsigned int width = Textures::get("menu_background").getSize().x / 2;
     unsigned int height = Textures::get("menu_background").getSize().y / 2;
@@ -18,6 +23,7 @@ Game::Game()
 
     register_game_states();
     state_stack.push_state(StateID::MENU);
+    state_stack.push_state(StateID::SETTINGS);
 }
 
 void Game::run()
@@ -28,6 +34,10 @@ void Game::run()
         update();
         render();
     }
+
+    KeyBindings::save();
+    SoundPlayer::save();
+    MusicPlayer::save();
 }
 
 void Game::handle_events()
@@ -61,4 +71,6 @@ void Game::render()
 void Game::register_game_states()
 {
     state_stack.register_state<MenuState>(StateID::MENU);
+    state_stack.register_state<SettingsState>(StateID::SETTINGS);
+    state_stack.register_state<KeyBindingState>(StateID::KEY_BINDING_STATE);
 }

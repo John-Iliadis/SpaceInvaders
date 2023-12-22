@@ -8,9 +8,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "asset_manager.hpp"
-#include "sound_player.hpp"
+#include "settings/audio/sound_player.hpp"
 #include "game_states/state_stack.hpp"
 #include "game_states/menu_state.hpp"
+#include "game_states/settings_state.hpp"
+#include "game_states/key_binding_state.hpp"
+#include "settings/audio/sound_player.hpp"
+#include "settings/audio/music_player.hpp"
 
 class Game
 {
