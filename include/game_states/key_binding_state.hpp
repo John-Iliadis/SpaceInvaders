@@ -28,6 +28,8 @@ private:
 
 private:
     sf::Sprite press_any_key;
+    sf::Text invalid_key;
+    bool show_invalid_key;
 };
 
 

@@ -9,7 +9,7 @@ json SoundPlayer::config;
 
 void SoundPlayer::init()
 {
-    std::ifstream input_settings_file("../data/settings.json");
+    std::ifstream input_settings_file("../data/sound.json");
 
     if (!input_settings_file.is_open())
         throw std::runtime_error("SoundPlayer::init - Failed to load settings file");
@@ -21,7 +21,7 @@ void SoundPlayer::init()
 
 void SoundPlayer::save()
 {
-    std::ofstream output_settings_file("../data/settings.json", std::ios::trunc);
+    std::ofstream output_settings_file("../data/sound.json", std::ios::trunc);
 
     if (!output_settings_file.is_open())
         throw std::runtime_error("SoundPlayer::init - Failed to load settings file");

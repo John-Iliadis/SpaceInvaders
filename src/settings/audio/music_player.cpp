@@ -10,7 +10,7 @@ json MusicPlayer::config;
 
 void MusicPlayer::init()
 {
-    std::ifstream input_settings_file("../data/settings.json");
+    std::ifstream input_settings_file("../data/music.json");
 
     if (!input_settings_file.is_open())
         throw std::runtime_error("MusicPlayer::init - Failed to load settings file");
@@ -26,7 +26,7 @@ void MusicPlayer::init()
 
 void MusicPlayer::save()
 {
-    std::ofstream output_settings_file("../data/settings.json", std::ios::trunc);
+    std::ofstream output_settings_file("../data/music.json", std::ios::trunc);
 
     if (!output_settings_file.is_open())
         throw std::runtime_error("MusicPlayer::save - Failed to load settings file");

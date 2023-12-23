@@ -30,11 +30,17 @@ public:
     static void save();
 
     static void set_key_binding_event(KeyBindings::Keys event);
+    static Keys get_key_binding_event();
+
     static void set_key(sf::Keyboard::Key key);
 
-    static std::string get_move_left();
-    static std::string get_move_right();
-    static std::string get_shoot();
+    static std::string get_move_left_str();
+    static std::string get_move_right_str();
+    static std::string get_shoot_str();
+    static sf::Keyboard::Key get_move_left();
+    static sf::Keyboard::Key get_move_right();
+    static sf::Keyboard::Key get_shoot();
+
 
 private:
     KeyBindings() = default;
