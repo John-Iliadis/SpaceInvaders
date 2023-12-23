@@ -19,13 +19,14 @@ class SettingsState : public State
 public:
     SettingsState(StateStack& state_stack, sf::RenderWindow& window);
 
-    void on_exit() override;
+    void on_return() override;
+
     void render() override;
     bool update() override;
     bool handle_event(const sf::Event& event) override;
 
 private:
-    void setup_gui(sf::Vector2u window_size);
+    void setup_gui();
 
 private:
     GUI_Container gui_container;

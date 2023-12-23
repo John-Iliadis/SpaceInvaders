@@ -7,19 +7,25 @@
 SettingsState::SettingsState(StateStack &state_stack, sf::RenderWindow &window)
     : State(state_stack, window)
 {
-    setup_gui(window.getSize());
+    setup_gui();
+    gui_container.select_first();
 }
 
-void SettingsState::on_exit()
+void SettingsState::on_return()
 {
-    KeyBindings::save();
-    MusicPlayer::save();
-    SoundPlayer::save();
+    State::on_return();
+
+    int index = gui_container.get_index();
+    gui_container.clear();
+
+    setup_gui();
+
+    gui_container.select(index);
 }
 
 void SettingsState::render()
 {
-    window.draw(gui_container);
+    is_current? window.draw(gui_container) : (void)0;
 }
 
 bool SettingsState::update()
@@ -33,9 +39,11 @@ bool SettingsState::handle_event(const sf::Event &event)
     return false;
 }
 
-void SettingsState::setup_gui(sf::Vector2u window_size)
+void SettingsState::setup_gui()
 {
     static GUI_Builder builder;
+
+    sf::Vector2u window_size = window.getSize();
 
     auto settings = builder.set_text("Settings")
             .set_position(window_size.x / 2.f, 120)
@@ -79,27 +87,27 @@ void SettingsState::setup_gui(sf::Vector2u window_size)
 
     builder.clear();
 
-    auto move_left = builder.set_text("Move Left: [" + KeyBindings::get_move_left() + "]")
+    auto move_left = builder.set_text("Move Left: [" + KeyBindings::get_move_left_str() + "]")
             .set_position(window_size.x / 2.f, 670)
-            .set_callback_1([this] () {request_stack_pop();
+            .set_callback_1([this] () {//request_stack_pop();
                 request_stack_push(StateID::KEY_BINDING_STATE);
                 KeyBindings::set_key_binding_event(KeyBindings::LEFT);})
             .make_button();
 
     builder.clear();
 
-    auto move_right = builder.set_text("Move Right: [" + KeyBindings::get_move_right() + "]")
+    auto move_right = builder.set_text("Move Right: [" + KeyBindings::get_move_right_str() + "]")
             .set_position(window_size.x / 2.f, 770)
-            .set_callback_1([this] () {request_stack_pop();
+            .set_callback_1([this] () {//request_stack_pop();
                 request_stack_push(StateID::KEY_BINDING_STATE);
                 KeyBindings::set_key_binding_event(KeyBindings::RIGHT);})
             .make_button();
 
     builder.clear();
 
-    auto shoot = builder.set_text("Shoot: [" + KeyBindings::get_shoot() + "]")
+    auto shoot = builder.set_text("Shoot: [" + KeyBindings::get_shoot_str() + "]")
             .set_position(window_size.x / 2.f, 870)
-            .set_callback_1([this] () {request_stack_pop();
+            .set_callback_1([this] () {//request_stack_pop();
                 request_stack_push(StateID::KEY_BINDING_STATE);
                 KeyBindings::set_key_binding_event(KeyBindings::SHOOT);})
             .make_button();
@@ -122,6 +130,4 @@ void SettingsState::setup_gui(sf::Vector2u window_size)
     gui_container.pack(move_right);
     gui_container.pack(shoot);
     gui_container.pack(back);
-
-    gui_container.select_first();
 }

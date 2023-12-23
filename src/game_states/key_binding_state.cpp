@@ -45,10 +45,8 @@ bool KeyBindingState::handle_event(const sf::Event &event)
         else
         {
             request_stack_pop();
-            request_stack_push(StateID::SETTINGS);
             KeyBindings::set_key(event.key.code);
             KeyBindings::set_key_binding_event(KeyBindings::NONE);
-            KeyBindings::save();
         }
     }
 
