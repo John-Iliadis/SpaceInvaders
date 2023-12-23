@@ -100,3 +100,13 @@ void GUI_Container::select_first()
         }
     }
 }
+
+int GUI_Container::get_index() const
+{
+    return current_index;
+}
+
+void GUI_Container::clear()
+{
+    children.clear();
+}

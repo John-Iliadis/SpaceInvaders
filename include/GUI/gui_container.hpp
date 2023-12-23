@@ -18,12 +18,15 @@ public:
     GUI_Container();
 
     void pack(const std::shared_ptr<GUI_Component>& component);
+    void clear();
 
     bool is_selectable() const override;
     void handle_event(const sf::Event &event) override;
 
     void select(int index);
     void select_first();
+
+    int get_index() const;
 
 private:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
