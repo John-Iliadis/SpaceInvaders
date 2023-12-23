@@ -18,8 +18,8 @@ public:
     State(StateStack& state_stack, sf::RenderWindow& window);
     virtual ~State() = default;
 
-    virtual void on_enter() {};
-    virtual void on_exit() {};
+    virtual void on_exit();
+    virtual void on_return();
 
     virtual void render() = 0;
     virtual bool update() = 0;
@@ -32,6 +32,7 @@ protected:
 
 protected:
     sf::RenderWindow& window;
+    bool is_current;
 
 private:
     StateStack& state_stack;

@@ -8,7 +8,18 @@
 State::State(StateStack &state_stack, sf::RenderWindow& window)
     : state_stack(state_stack)
     , window(window)
+    , is_current(true)
 {
+}
+
+void State::on_return()
+{
+    is_current = true;
+}
+
+void State::on_exit()
+{
+    is_current = false;
 }
 
 void State::request_stack_push(StateID state_id)
@@ -25,3 +36,4 @@ void State::request_state_clear()
 {
     state_stack.clear_states();
 }
+

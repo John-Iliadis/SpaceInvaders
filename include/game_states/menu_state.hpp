@@ -18,9 +18,6 @@ class MenuState : public State
 public:
     MenuState(StateStack& state_stack, sf::RenderWindow& window);
 
-    void on_enter() override;
-    void on_exit() override;
-
     void render() override;
     bool update() override;
     bool handle_event(const sf::Event& event) override;
@@ -33,8 +30,6 @@ private:
     sf::Sprite title;
 
     GUI_Container gui_container;
-
-    bool is_current_state;
 };
 
 

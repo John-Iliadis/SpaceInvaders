@@ -7,7 +7,6 @@
 
 MenuState::MenuState(StateStack& state_stack, sf::RenderWindow &window)
     : State(state_stack, window)
-    , is_current_state(true)
 {
     sf::Vector2u window_size = window.getSize();
 
@@ -23,21 +22,12 @@ MenuState::MenuState(StateStack& state_stack, sf::RenderWindow &window)
     setup_gui(window_size);
 }
 
-void MenuState::on_enter()
-{
-    is_current_state = true;
-}
-
-void MenuState::on_exit()
-{
-    is_current_state = false;
-}
 
 void MenuState::render()
 {
     window.draw(background);
 
-    if (is_current_state)
+    if (is_current)
     {
         window.draw(title);
         window.draw(gui_container);

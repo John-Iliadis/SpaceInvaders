@@ -80,7 +80,7 @@ void StateStack::apply_pending_changes()
             case Action::POP:
                 state_stack.back()->on_exit();
                 state_stack.pop_back();
-                if (!is_empty()) state_stack.back()->on_enter();
+                if (!is_empty()) state_stack.back()->on_return();
                 break;
 
             case Action::CLEAR:
