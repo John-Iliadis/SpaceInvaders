@@ -14,7 +14,7 @@ enum class StateID
     GAME_OVER,
     HIGH_SCORES,
     KEY_BINDING_STATE,
-    TEXT_INPUT_STATE,
+    SUBMIT_SCORE,
     NONE
 };
 
