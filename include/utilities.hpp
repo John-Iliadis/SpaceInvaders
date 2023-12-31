@@ -11,6 +11,8 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 void center_text(sf::Text& text);
+void set_text_origin_right(sf::Text& text);
+void set_text_origin_left(sf::Text& text);
 void center_shape(sf::Shape& shape);
 void center_sprite(sf::Sprite& sprite);
 
