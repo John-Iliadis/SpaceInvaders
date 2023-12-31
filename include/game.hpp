@@ -13,6 +13,9 @@
 #include "game_states/menu_state.hpp"
 #include "game_states/settings_state.hpp"
 #include "game_states/key_binding_state.hpp"
+#include "game_states/high_scores_state.hpp"
+#include "game_states/game_over_state.hpp"
+#include "game_states/submit_score_state.hpp"
 #include "settings/audio/sound_player.hpp"
 #include "settings/audio/music_player.hpp"
 

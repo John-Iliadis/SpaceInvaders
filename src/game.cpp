@@ -14,6 +14,7 @@ Game::Game()
     KeyBindings::init();
     SoundPlayer::init();
     MusicPlayer::init();
+    HighScores::init();
 
     unsigned int width = Textures::get("menu_background").getSize().x / 2;
     unsigned int height = Textures::get("menu_background").getSize().y / 2;
@@ -23,7 +24,6 @@ Game::Game()
 
     register_game_states();
     state_stack.push_state(StateID::MENU);
-    state_stack.push_state(StateID::SETTINGS);
 }
 
 void Game::run()
@@ -38,6 +38,7 @@ void Game::run()
     KeyBindings::save();
     SoundPlayer::save();
     MusicPlayer::save();
+    HighScores::save();
 }
 
 void Game::handle_events()
@@ -73,4 +74,7 @@ void Game::register_game_states()
     state_stack.register_state<MenuState>(StateID::MENU);
     state_stack.register_state<SettingsState>(StateID::SETTINGS);
     state_stack.register_state<KeyBindingState>(StateID::KEY_BINDING_STATE);
+    state_stack.register_state<HighScoresState>(StateID::HIGH_SCORES);
+    state_stack.register_state<GameOverState>(StateID::GAME_OVER);
+    state_stack.register_state<SubmitScoreState>(StateID::SUBMIT_SCORE);
 }
