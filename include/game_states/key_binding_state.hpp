@@ -12,6 +12,7 @@
 #include "../utilities.hpp"
 #include "../asset_manager.hpp"
 #include "../settings/key_bindings.hpp"
+#include "../settings/audio/sound_player.hpp"
 
 
 class KeyBindingState : public State

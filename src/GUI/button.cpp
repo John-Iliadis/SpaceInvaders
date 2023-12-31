@@ -15,12 +15,6 @@ Button::Button(const std::string &l_text, sf::Vector2f l_position, std::function
     callback = std::move(l_callback);
 }
 
-void Button::set_text(const std::string &l_text)
-{
-    text.setString(l_text);
-    // maybe center again here
-}
-
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -54,5 +48,6 @@ void Button::deselect()
 
 void Button::activate()
 {
+    SoundPlayer::play("pick");
     if (callback) callback();
 }

@@ -20,7 +20,6 @@ public:
     SettingsState(StateStack& state_stack, sf::RenderWindow& window);
 
     void on_return() override;
-
     void render() override;
     bool update() override;
     bool handle_event(const sf::Event& event) override;

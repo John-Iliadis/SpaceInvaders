@@ -12,6 +12,7 @@
 #include "../utilities.hpp"
 #include "gui_component.hpp"
 #include "../asset_manager.hpp"
+#include "../settings/audio/sound_player.hpp"
 
 class Button : public GUI_Component
 {
@@ -19,8 +20,6 @@ public:
     Button(const std::string& l_text,
            sf::Vector2f l_position,
            std::function<void()> l_callback);
-
-    void set_text(const std::string& l_text);
 
     void select() override;
     void deselect() override;

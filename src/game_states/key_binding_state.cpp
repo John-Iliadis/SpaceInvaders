@@ -44,6 +44,7 @@ bool KeyBindingState::handle_event(const sf::Event &event)
         }
         else
         {
+            SoundPlayer::play("pick");
             request_stack_pop();
             KeyBindings::set_key(event.key.code);
             KeyBindings::set_key_binding_event(KeyBindings::NONE);

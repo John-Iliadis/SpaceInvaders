@@ -80,20 +80,20 @@ std::shared_ptr<Button> GUI_Builder::make_button()
 
 std::shared_ptr<Label> GUI_Builder::make_label()
 {
-//    if (text.empty() || font_size == 0)
-//    {
-//        throw std::runtime_error("GUI_Builder::make_label - Preperty not set\n");
-//    }
+    if (text.empty() || font_size == 0)
+    {
+        throw std::runtime_error("GUI_Builder::make_label - Preperty not set\n");
+    }
 
     return std::make_shared<Label>(text, position, color, font_size);
 }
 
 std::shared_ptr<Slider> GUI_Builder::make_slider()
 {
-//    if (text.empty() || callback_1 == nullptr || callback_2 == nullptr)
-//    {
-//        throw std::runtime_error("GUI_Builder::make_slider - Preperty not set\n");
-//    }
+    if (text.empty() || callback_1 == nullptr || callback_2 == nullptr)
+    {
+        throw std::runtime_error("GUI_Builder::make_slider - Preperty not set\n");
+    }
 
     return std::make_shared<Slider>(text, position, level, callback_1, callback_2);
 }

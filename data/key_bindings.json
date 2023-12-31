@@ -1,5 +1,5 @@
 {
-    "move_left": 0,
-    "move_right": 1,
-    "shoot": 2
+    "move_left": 15,
+    "move_right": 12,
+    "shoot": 13
 }
