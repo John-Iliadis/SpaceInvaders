@@ -19,7 +19,7 @@ template <typename asset_type>
 class AssetManager
 {
 public:
-    static const asset_type& get(const std::string& key);
+    static asset_type& get(const std::string& key);
 
     static void load(const std::string& key, const std::string& file_name);
     static void load_directory(const std::string& dir);
@@ -28,7 +28,7 @@ public:
 private:
     AssetManager() = default;
 
-    static const asset_type& get_impl(const std::string& key);
+    static asset_type& get_impl(const std::string& key);
 
     static void load_impl(const std::string& key, const std::string& file_name);
     static void load_directory_impl(const std::string& dir);

@@ -2,7 +2,7 @@ template <typename asset_type>
 std::unordered_map<std::string, std::unique_ptr<asset_type>> AssetManager<asset_type>::map;
 
 template<typename asset_type>
-const asset_type& AssetManager<asset_type>::get(const std::string &key)
+asset_type& AssetManager<asset_type>::get(const std::string &key)
 {
     return get_impl(key);
 }
@@ -26,7 +26,7 @@ void AssetManager<asset_type>::remove(const std::string &key)
 }
 
 template<typename asset_type>
-const asset_type& AssetManager<asset_type>::get_impl(const std::string &key)
+asset_type& AssetManager<asset_type>::get_impl(const std::string &key)
 {
     if (auto it = map.find(key);
             it != map.end())
