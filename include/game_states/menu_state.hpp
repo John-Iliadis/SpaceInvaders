@@ -16,7 +16,7 @@
 class MenuState : public State
 {
 public:
-    MenuState(StateStack& state_stack, sf::RenderWindow& window);
+    MenuState(StateStack& state_stack, Context context);
 
     void render() override;
     bool update() override;

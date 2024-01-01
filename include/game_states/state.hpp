@@ -8,6 +8,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "context.hpp"
 #include "state_identifiers.hpp"
 
 class StateStack;
@@ -15,7 +16,7 @@ class StateStack;
 class State
 {
 public:
-    State(StateStack& state_stack, sf::RenderWindow& window);
+    State(StateStack& state_stack, Context context);
     virtual ~State() = default;
 
     virtual void on_exit();
@@ -31,7 +32,7 @@ protected:
     void request_state_clear();
 
 protected:
-    sf::RenderWindow& window;
+    Context context;
     bool is_current;
 
 private:

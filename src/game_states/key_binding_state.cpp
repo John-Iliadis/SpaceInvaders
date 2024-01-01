@@ -4,11 +4,13 @@
 
 #include "../../include/game_states/key_binding_state.hpp"
 
-KeyBindingState::KeyBindingState(StateStack &state_stack, sf::RenderWindow &window)
-    : State(state_stack, window)
+KeyBindingState::KeyBindingState(StateStack &state_stack, Context context)
+    : State(state_stack, context)
 {
+    auto window_size = context.window->getSize();
+
     press_any_key.setTexture(Textures::get("press_any_key"));
-    press_any_key.setPosition(window.getSize().x / 2.f, window.getSize().y / 2.f);
+    press_any_key.setPosition(window_size.x / 2.f, window_size.y / 2.f);
     press_any_key.setScale(1.4, 1.4);
     center_sprite(press_any_key);
 
@@ -16,7 +18,7 @@ KeyBindingState::KeyBindingState(StateStack &state_stack, sf::RenderWindow &wind
     invalid_key.setFont(Fonts::get("pixel_type"));
     invalid_key.setCharacterSize(100);
     invalid_key.setFillColor({255, 0, 0});
-    invalid_key.setPosition(window.getSize().x / 2.f, window.getSize().y / 2.f + 200);
+    invalid_key.setPosition(window_size.x / 2.f, window_size.y / 2.f + 200);
     center_text(invalid_key);
 
     show_invalid_key = false;
@@ -24,9 +26,11 @@ KeyBindingState::KeyBindingState(StateStack &state_stack, sf::RenderWindow &wind
 
 void KeyBindingState::render()
 {
-    window.draw(press_any_key);
+    auto window = context.window;
 
-    show_invalid_key? window.draw(invalid_key) : (void)0;
+    window->draw(press_any_key);
+
+    show_invalid_key? window->draw(invalid_key) : (void)0;
 }
 
 bool KeyBindingState::update()
@@ -76,7 +80,6 @@ bool KeyBindingState::is_valid_key(sf::Keyboard::Key key)
 
         case KeyBindings::NONE:
             throw std::runtime_error("KeyBindingState::is_valid_key - KeyBindings::NONE is set\n");
-            break;
     }
 
     return true;

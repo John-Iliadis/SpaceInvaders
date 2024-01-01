@@ -5,8 +5,8 @@
 #include "../../include/game_states/submit_score_state.hpp"
 
 
-SubmitScoreState::SubmitScoreState(StateStack &state_stack, sf::RenderWindow &render_window)
-    : State(state_stack,render_window)
+SubmitScoreState::SubmitScoreState(StateStack &state_stack, Context context)
+    : State(state_stack, context)
 {
     setup_gui();
 
@@ -15,15 +15,17 @@ SubmitScoreState::SubmitScoreState(StateStack &state_stack, sf::RenderWindow &re
 
 void SubmitScoreState::render()
 {
-    window.draw(background);
-    window.draw(instruction_msg);
-    window.draw(rect);
-    window.draw(text);
-    window.draw(submit);
+    auto window = context.window;
+
+    window->draw(background);
+    window->draw(instruction_msg);
+    window->draw(rect);
+    window->draw(text);
+    window->draw(submit);
 
     if (!is_invalid_name)
     {
-        window.draw(invalid_name);
+        window->draw(invalid_name);
 
         if (timer.getElapsedTime().asSeconds() > 2.5)
         {
@@ -80,7 +82,7 @@ bool SubmitScoreState::handle_event(const sf::Event &event)
 
 void SubmitScoreState::setup_gui()
 {
-    auto window_size = window.getSize();
+    auto window_size = context.window->getSize();
 
     background.setSize({(float)window_size.x, (float)window_size.y});
     background.setFillColor(sf::Color::Black);

@@ -4,10 +4,10 @@
 
 #include "../../include/game_states/high_scores_state.hpp"
 
-HighScoresState::HighScoresState(StateStack &state_stack, sf::RenderWindow &window)
-    : State(state_stack, window)
+HighScoresState::HighScoresState(StateStack &state_stack, Context context)
+    : State(state_stack, context)
 {
-    auto win_size = window.getSize();
+    auto win_size = context.window->getSize();
 
     background.setTexture(Textures::get("menu_background"));
     background.setScale(0.5, 0.5);
@@ -89,16 +89,18 @@ HighScoresState::HighScoresState(StateStack &state_stack, sf::RenderWindow &wind
 
 void HighScoresState::render()
 {
-    window.draw(background);
-    window.draw(high_scores);
-    window.draw(back_to_menu);
-    window.draw(rank);
-    window.draw(name);
-    window.draw(score);
+    auto window = context.window;
+
+    window->draw(background);
+    window->draw(high_scores);
+    window->draw(back_to_menu);
+    window->draw(rank);
+    window->draw(name);
+    window->draw(score);
 
     for (const auto& text : scores)
     {
-        window.draw(text);
+        window->draw(text);
     }
 }
 

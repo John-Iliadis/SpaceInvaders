@@ -16,15 +16,19 @@
 
 #include "state.hpp"
 #include "state_identifiers.hpp"
+#include "context.hpp"
 
 
 class StateStack
 {
 public:
-    StateStack(sf::RenderWindow& window);
+    StateStack() = default;
+    StateStack(Context context);
 
     template<typename state_type>
     void register_state(StateID state_id);
+
+    void set_context(Context context);
 
     void update();
     void render();
@@ -59,7 +63,7 @@ private:
     std::vector<PendingChange> pending_changes;
     std::unordered_map<StateID, std::function<std::unique_ptr<State>()>> state_factory;
 
-    sf::RenderWindow& window;
+    Context context;
 };
 
 template<typename state_type>
@@ -71,7 +75,7 @@ void StateStack::register_state(StateID state_id)
     }
 
     state_factory[state_id] = [this] () {
-        return std::make_unique<state_type>(*this, window);
+        return std::make_unique<state_type>(*this, context);
     };
 }
 

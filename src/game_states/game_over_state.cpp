@@ -4,10 +4,10 @@
 
 #include "../../include/game_states/game_over_state.hpp"
 
-GameOverState::GameOverState(StateStack &state_stack, sf::RenderWindow &window)
-    : State(state_stack, window)
+GameOverState::GameOverState(StateStack &state_stack, Context context)
+    : State(state_stack, context)
 {
-    auto window_size = window.getSize();
+    auto window_size = context.window->getSize();
     game_over.setTexture(Textures::get("game_over"));
     game_over.setPosition(window_size.x / 2.f, 150);
     game_over.setScale(1.5, 1.5);
@@ -20,8 +20,8 @@ GameOverState::GameOverState(StateStack &state_stack, sf::RenderWindow &window)
 
 void GameOverState::render()
 {
-    window.draw(game_over);
-    window.draw(gui_container);
+    context.window->draw(game_over);
+    context.window->draw(gui_container);
 }
 
 bool GameOverState::update()

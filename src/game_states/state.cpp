@@ -5,9 +5,9 @@
 #include "../../include/game_states/state.hpp"
 #include "../../include/game_states/state_stack.hpp"
 
-State::State(StateStack &state_stack, sf::RenderWindow& window)
+State::State(StateStack &state_stack, Context context)
     : state_stack(state_stack)
-    , window(window)
+    , context(context)
     , is_current(true)
 {
 }

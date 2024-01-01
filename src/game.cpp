@@ -5,7 +5,6 @@
 #include "../include/game.hpp"
 
 Game::Game()
-    : state_stack(window)
 {
     Textures::load_directory("../assets/textures");
     SoundBuffers::load_directory("../assets/audio");
@@ -21,6 +20,8 @@ Game::Game()
 
     window.create({width, height}, "Space Invaders", sf::Style::Close | sf::Style::Titlebar);
     window.setFramerateLimit(60);
+
+    state_stack.set_context({&window});
 
     register_game_states();
     state_stack.push_state(StateID::MENU);
@@ -77,4 +78,6 @@ void Game::register_game_states()
     state_stack.register_state<HighScoresState>(StateID::HIGH_SCORES);
     state_stack.register_state<GameOverState>(StateID::GAME_OVER);
     state_stack.register_state<SubmitScoreState>(StateID::SUBMIT_SCORE);
+    state_stack.register_state<GameState>(StateID::GAME);
+    state_stack.register_state<PauseState>(StateID::PAUSE);
 }

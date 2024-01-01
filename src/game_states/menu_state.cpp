@@ -5,10 +5,10 @@
 #include "../../include/game_states/menu_state.hpp"
 #include "../../include/game_states/state_identifiers.hpp"
 
-MenuState::MenuState(StateStack& state_stack, sf::RenderWindow &window)
-    : State(state_stack, window)
+MenuState::MenuState(StateStack& state_stack, Context context)
+    : State(state_stack, context)
 {
-    sf::Vector2u window_size = window.getSize();
+    sf::Vector2u window_size = context.window->getSize();
 
     background.setTexture(Textures::get("menu_background"));
     background.setScale(0.5, 0.5);
@@ -24,12 +24,14 @@ MenuState::MenuState(StateStack& state_stack, sf::RenderWindow &window)
 
 void MenuState::render()
 {
-    window.draw(background);
+    auto window = context.window;
+
+    window->draw(background);
 
     if (is_current)
     {
-        window.draw(title);
-        window.draw(gui_container);
+        window->draw(title);
+        window->draw(gui_container);
     }
 }
 
@@ -49,9 +51,11 @@ void MenuState::setup_gui(sf::Vector2u window_size)
 {
     static GUI_Builder builder;
 
-    auto play = builder.set_text("PLAY")
+    auto play = builder.set_text("PLAY") // TODO: Delete when finished testing.
             .set_position(window_size.x / 2.f, 550)
-            .set_callback_1(nullptr)
+            .set_callback_1([this] () {
+                request_stack_push(StateID::PAUSE);
+            })
             .make_button();
 
     builder.clear();
@@ -75,7 +79,7 @@ void MenuState::setup_gui(sf::Vector2u window_size)
 
         auto exit =  builder.set_text("EXIT")
             .set_position(window_size.x / 2.f, 850)
-            .set_callback_1([this] () {window.close();})
+            .set_callback_1([this] () {context.window->close();})
             .make_button();
 
     builder.clear();

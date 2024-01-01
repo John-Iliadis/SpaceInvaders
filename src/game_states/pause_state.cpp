@@ -4,10 +4,10 @@
 
 #include "../../include/game_states/pause_state.hpp"
 
-PauseState::PauseState(StateStack &state_stack, sf::RenderWindow &window)
-        : State(state_stack, window)
+PauseState::PauseState(StateStack &state_stack, Context context)
+        : State(state_stack, context)
 {
-    auto window_size = window.getSize();
+    auto window_size = context.window->getSize();
 
     overlay.setSize({(float)window_size.x, (float)window_size.y});
     overlay.setFillColor({0, 0, 0, 128});
@@ -18,11 +18,13 @@ PauseState::PauseState(StateStack &state_stack, sf::RenderWindow &window)
 
 void PauseState::render()
 {
-    window.draw(overlay);
+    auto window = context.window;
+
+    window->draw(overlay);
 
     if (is_current)
     {
-        window.draw(gui_container);
+        window->draw(gui_container);
     }
 }
 
@@ -79,7 +81,7 @@ void PauseState::setup_gui(sf::Vector2u window_size)
 
     auto quit_to_desktop = builder.set_text("QUIT TO DESKTOP")
             .set_position(window_size.x / 2.f, 700)
-            .set_callback_1([this] () {window.close();})
+            .set_callback_1([this] () {context.window->close();})
             .make_button();
 
     builder.clear();

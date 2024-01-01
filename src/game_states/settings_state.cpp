@@ -4,8 +4,8 @@
 
 #include "../../include/game_states/settings_state.hpp"
 
-SettingsState::SettingsState(StateStack &state_stack, sf::RenderWindow &window)
-    : State(state_stack, window)
+SettingsState::SettingsState(StateStack &state_stack, Context context)
+    : State(state_stack, context)
 {
     setup_gui();
     gui_container.select_first();
@@ -25,7 +25,7 @@ void SettingsState::on_return()
 
 void SettingsState::render()
 {
-    is_current? window.draw(gui_container) : (void)0;
+    is_current? context.window->draw(gui_container) : (void)0;
 }
 
 bool SettingsState::update()
@@ -43,7 +43,7 @@ void SettingsState::setup_gui()
 {
     static GUI_Builder builder;
 
-    sf::Vector2u window_size = window.getSize();
+    sf::Vector2u window_size = context.window->getSize();
 
     auto settings = builder.set_text("SETTINGS")
             .set_position(window_size.x / 2.f, 115)

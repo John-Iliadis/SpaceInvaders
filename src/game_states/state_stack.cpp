@@ -4,9 +4,14 @@
 
 #include "../../include/game_states/state_stack.hpp"
 
-StateStack::StateStack(sf::RenderWindow &window)
-    : window(window)
+StateStack::StateStack(Context context)
+    : context(context)
 {
+}
+
+void StateStack::set_context(Context context)
+{
+    this->context = context;
 }
 
 void StateStack::update()
