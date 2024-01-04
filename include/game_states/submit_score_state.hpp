@@ -17,7 +17,7 @@
 class SubmitScoreState : public State
 {
 public:
-    SubmitScoreState(StateStack& state_stack, Context context);
+    SubmitScoreState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

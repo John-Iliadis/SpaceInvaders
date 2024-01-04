@@ -24,7 +24,7 @@ Game::Game()
     state_stack.set_context({&window});
 
     register_game_states();
-    state_stack.push_state(StateID::MENU);
+    state_stack.push_state(StateID::GAME);
 }
 
 void Game::run()
@@ -50,9 +50,6 @@ void Game::handle_events()
     {
         if (event.type == sf::Event::Closed)
             window.close();
-        else if (event.type == sf::Event::KeyPressed)
-            if (event.key.code == sf::Keyboard::Escape)
-                window.close();
 
         state_stack.handle_event(event);
     }
