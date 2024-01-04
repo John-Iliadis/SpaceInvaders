@@ -2,8 +2,7 @@
 // Created by Gianni on 2/01/2024.
 //
 
-#include "background.hpp"
-#include <iostream> // todo: remove
+#include "../include/background.hpp"
 
 Background::Background(sf::Vector2u window_size)
     : window_size(window_size)
@@ -27,7 +26,7 @@ void Background::update()
         sprite.setPosition(0, offset);
     }
 
-    sprite.move(0, 10);
+    sprite.move(0, 2);
 }
 
 void Background::draw(sf::RenderTarget &target, sf::RenderStates states) const
