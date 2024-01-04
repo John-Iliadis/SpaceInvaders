@@ -16,7 +16,7 @@
 class MenuState : public State
 {
 public:
-    MenuState(StateStack& state_stack, Context context);
+    MenuState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

@@ -5,7 +5,7 @@
 #include "../../include/game_states/submit_score_state.hpp"
 
 
-SubmitScoreState::SubmitScoreState(StateStack &state_stack, Context context)
+SubmitScoreState::SubmitScoreState(StateStack &state_stack, Context& context)
     : State(state_stack, context)
 {
     setup_gui();

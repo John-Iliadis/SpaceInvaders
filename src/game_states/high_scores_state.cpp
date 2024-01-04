@@ -4,7 +4,7 @@
 
 #include "../../include/game_states/high_scores_state.hpp"
 
-HighScoresState::HighScoresState(StateStack &state_stack, Context context)
+HighScoresState::HighScoresState(StateStack &state_stack, Context& context)
     : State(state_stack, context)
 {
     auto win_size = context.window->getSize();

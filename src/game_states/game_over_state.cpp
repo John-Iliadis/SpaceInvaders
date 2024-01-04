@@ -4,7 +4,7 @@
 
 #include "../../include/game_states/game_over_state.hpp"
 
-GameOverState::GameOverState(StateStack &state_stack, Context context)
+GameOverState::GameOverState(StateStack &state_stack, Context& context)
     : State(state_stack, context)
 {
     auto window_size = context.window->getSize();

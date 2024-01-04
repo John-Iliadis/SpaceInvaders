@@ -14,7 +14,7 @@
 class PauseState : public State
 {
 public:
-    PauseState(StateStack& state_stack, Context context);
+    PauseState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

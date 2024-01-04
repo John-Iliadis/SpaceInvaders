@@ -4,7 +4,7 @@
 
 #include "../../include/game_states/pause_state.hpp"
 
-PauseState::PauseState(StateStack &state_stack, Context context)
+PauseState::PauseState(StateStack &state_stack, Context& context)
         : State(state_stack, context)
 {
     auto window_size = context.window->getSize();

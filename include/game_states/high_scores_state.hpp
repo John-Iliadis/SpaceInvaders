@@ -18,7 +18,7 @@
 class HighScoresState : public State
 {
 public:
-    HighScoresState(StateStack& state_stack, Context context);
+    HighScoresState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

@@ -14,7 +14,7 @@
 class GameOverState : public State
 {
 public:
-    GameOverState(StateStack& state_stack, Context context);
+    GameOverState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

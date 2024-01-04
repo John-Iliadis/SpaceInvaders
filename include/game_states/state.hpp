@@ -16,7 +16,7 @@ class StateStack;
 class State
 {
 public:
-    State(StateStack& state_stack, Context context);
+    State(StateStack& state_stack, Context& context);
     virtual ~State() = default;
 
     virtual void on_exit();
@@ -32,7 +32,7 @@ protected:
     void request_state_clear();
 
 protected:
-    Context context;
+    Context& context;
     bool is_current;
 
 private:

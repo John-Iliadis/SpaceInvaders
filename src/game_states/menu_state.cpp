@@ -5,7 +5,7 @@
 #include "../../include/game_states/menu_state.hpp"
 #include "../../include/game_states/state_identifiers.hpp"
 
-MenuState::MenuState(StateStack& state_stack, Context context)
+MenuState::MenuState(StateStack& state_stack, Context& context)
     : State(state_stack, context)
 {
     sf::Vector2u window_size = context.window->getSize();
@@ -51,10 +51,11 @@ void MenuState::setup_gui(sf::Vector2u window_size)
 {
     static GUI_Builder builder;
 
-    auto play = builder.set_text("PLAY") // TODO: Delete when finished testing.
+    auto play = builder.set_text("PLAY")
             .set_position(window_size.x / 2.f, 550)
             .set_callback_1([this] () {
-                request_stack_push(StateID::PAUSE);
+                request_stack_pop();
+                request_stack_push(StateID::GAME);
             })
             .make_button();
 

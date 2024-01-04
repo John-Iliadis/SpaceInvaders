@@ -4,7 +4,7 @@
 
 #include "../../include/game_states/settings_state.hpp"
 
-SettingsState::SettingsState(StateStack &state_stack, Context context)
+SettingsState::SettingsState(StateStack &state_stack, Context& context)
     : State(state_stack, context)
 {
     setup_gui();

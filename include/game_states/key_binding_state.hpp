@@ -18,7 +18,7 @@
 class KeyBindingState : public State
 {
 public:
-    KeyBindingState(StateStack& state_stack, Context context);
+    KeyBindingState(StateStack& state_stack, Context& context);
 
     void render() override;
     bool update() override;

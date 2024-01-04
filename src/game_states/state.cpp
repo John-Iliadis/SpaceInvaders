@@ -5,7 +5,7 @@
 #include "../../include/game_states/state.hpp"
 #include "../../include/game_states/state_stack.hpp"
 
-State::State(StateStack &state_stack, Context context)
+State::State(StateStack &state_stack, Context& context)
     : state_stack(state_stack)
     , context(context)
     , is_current(true)

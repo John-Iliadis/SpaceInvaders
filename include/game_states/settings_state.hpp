@@ -17,7 +17,7 @@
 class SettingsState : public State
 {
 public:
-    SettingsState(StateStack& state_stack, Context context);
+    SettingsState(StateStack& state_stack, Context& context);
 
     void on_return() override;
     void render() override;

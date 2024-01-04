@@ -4,7 +4,7 @@
 
 #include "../../include/game_states/key_binding_state.hpp"
 
-KeyBindingState::KeyBindingState(StateStack &state_stack, Context context)
+KeyBindingState::KeyBindingState(StateStack &state_stack, Context& context)
     : State(state_stack, context)
 {
     auto window_size = context.window->getSize();
